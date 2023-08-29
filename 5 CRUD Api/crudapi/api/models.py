@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse 
 # Create your models here.
 
 #  Artist, Album, Song 
@@ -32,5 +32,7 @@ class Song(models.Model):
         def __str__(self): 
                 return self.song_name
         
+        def get_absolute_url(self):
+                return reverse("model_detail", kwargs={"pk": self.pk})
         
                 

@@ -41,7 +41,8 @@ class AlbumSerializer(serializers.Serializer):
                 for attr, value in validated_data.items(): 
                         if value is not None: 
                                 setattr(instance, attr , value)
- 
+
+                # or can be used this 
                 # instance.artist = validated_data.get('artist', instance.artist)
                 # instance.album_name = validated_data.get('album_name', instance.album_name)
                 # instance.total_songs = validated_data.get('total_songs', instance.total_songs)
@@ -65,7 +66,9 @@ class SongSerializer(serializers.Serializer):
         def update(self, instance, validated_data): 
                 validated_data['last_updated'] = timezone.now().date()
                 for attr, value in validated_data.items(): 
-                        setattr(instance, attr, value)
+                        if value is not None: 
+                                setattr(instance, attr, value)
                         
-                instance.save(update_fields=validated_data.key())
+                # instance.save(update_fields=validated_data.values()) # does not work 
+                instance.save()
                 return instance 

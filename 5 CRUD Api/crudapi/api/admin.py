@@ -13,6 +13,6 @@ class AlbumAdmin(admin.ModelAdmin):
         
 @admin.register(Song)
 class SongAdmin(admin.ModelAdmin): 
-        list_display = ['id', 'song_name', 'album', 'song_name', 'first_publication', 'last_updated']
+        list_display = ['id', 'song_name', 'album', 'first_publication', 'last_updated']
         
 
